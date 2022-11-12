@@ -5,8 +5,10 @@ body {
 h1 {
   display: inline;
 }
-h2 {
-  display: inline;
+small#degrees {
+  position: relative;
+  font-size: 16px;
+  top: -18px;
 }
 form {
   text-align: right;
@@ -34,4 +36,14 @@ form {
 }
 .upper {
   padding-right: 20px;
+}
+.wholedoc {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 10px;
+}
+.name {
+  padding: 20px 20px 0px 20px;
 }
