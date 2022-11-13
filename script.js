@@ -39,6 +39,7 @@ function formatDate(currentDate) {
 let currentDate = new Date();
 let today = document.querySelector("#today-date");
 today.innerHTML = formatDate(currentDate);
+
 ///
 function showTemperature(response) {
   console.log(response.data);
@@ -49,6 +50,11 @@ function showTemperature(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
+  );
+  let iconElement = document.querySelector("#weatherlogo");
+  iconElement.setAttribute(
+    `src`,
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
 
