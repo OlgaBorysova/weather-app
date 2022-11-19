@@ -47,3 +47,11 @@ form {
 .name {
   padding: 20px 20px 0px 20px;
 }
+.active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+.active:hover {
+  text-decoration: none;
+}

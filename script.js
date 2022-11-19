@@ -56,6 +56,7 @@ function showTemperature(response) {
     `src`,
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  celciusTemperature = response.data.main.temp;
 }
 
 function search(city) {
@@ -71,8 +72,6 @@ function handleSubmit(event) {
 }
 let form = document.querySelector("#city-form");
 form.addEventListener("submit", handleSubmit);
-
-search("Odessa");
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
@@ -91,3 +90,29 @@ function getCurrentPosition(event) {
 
 let currentLocationButton = document.querySelector("#location");
 currentLocationButton.addEventListener("click", getCurrentPosition);
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celciusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+function displayCelciusTemperature(event) {
+  event.preventDefault();
+  celciusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelciusTemperature);
+
+let celciusTemperature = null;
+
+search("Odessa");
