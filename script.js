@@ -41,6 +41,32 @@ let today = document.querySelector("#today-date");
 today.innerHTML = formatDate(currentDate);
 
 ///
+function dispayForecast() {
+  let forecastElement = document.querySelector("#weatherforecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thur"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `     
+  <div class="col" id="weatherforecast">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${day}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">15-22C</h6>
+              <p class="card-text">
+                <i class="fa-solid fa-cloud-sun-rain suncloud"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+            `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   console.log(response.data);
   document.querySelector("#my-city").innerHTML = response.data.name;
@@ -118,3 +144,4 @@ celciusLink.addEventListener("click", displayCelciusTemperature);
 let celciusTemperature = null;
 
 search("Odessa");
+dispayForecast();
