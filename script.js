@@ -41,7 +41,8 @@ let today = document.querySelector("#today-date");
 today.innerHTML = formatDate(currentDate);
 
 ///
-function dispayForecast() {
+function displayForecast(response) {
+  console.log(response.data.list);
   let forecastElement = document.querySelector("#weatherforecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Sun", "Mon", "Tues", "Wed", "Thur"];
@@ -66,6 +67,13 @@ function dispayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "ca0db41e2e878c74a1dfc7ffece370d4";
+  let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiURL);
+  axios.get(apiURL).then(displayForecast);
+}
 
 function showTemperature(response) {
   console.log(response.data);
@@ -85,6 +93,8 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   celciusTemperature = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -144,4 +154,3 @@ celciusLink.addEventListener("click", displayCelciusTemperature);
 let celciusTemperature = null;
 
 search("Odessa");
-dispayForecast();
